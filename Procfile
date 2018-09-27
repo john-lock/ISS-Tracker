@@ -1,1 +1,1 @@
-web: gunicorn iss.wsgi --log-file -
+web: gunicorn app:app
