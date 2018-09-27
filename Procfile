@@ -1,1 +1,1 @@
-web: gunicorn jl-isstracker.wsgi --log-file -
+web: gunicorn iss.wsgi --log-file -
