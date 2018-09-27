@@ -1,0 +1,1 @@
+web: gunicorn jl-isstracker.wsgi --log-file -
