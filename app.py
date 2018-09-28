@@ -13,7 +13,7 @@ def main():
     astro_data = None
     now_data = None
     errors = None
-    
+
     # ISS NOW
     iss_now_url = "http://api.open-notify.org/iss-now.json"
     try:

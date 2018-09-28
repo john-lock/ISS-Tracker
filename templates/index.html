@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
     * {
         box-sizing: border-box;
@@ -28,10 +29,13 @@
     .column1 {
         flex: 60%;
         height: 80%;
+        align-content: left;
     }
 
     .column2 {
-        flex: 40%;
+        flex: 30%;
+        background-image: url(static/images/astronaut.png);
+        background-repeat: no-repeat;
     }
 
     footer {
@@ -44,29 +48,52 @@
         height: 90%;
         max-width: 90%;
     }
+
+    #astro-names {
+        float: left;
+        max-width: 250px;
+        margin-left: 0px;
+    }
+
+    .list-group-item {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .badge {
+        align-self: center;
+    }
     </style>
 </head>
 
 <body>
     <header>
-        <h2>Current position of the International Space Station</h2> <a href="https://github.com/john-lock/ISS-Tracker"><span>Click to view on Github</span></a>
+        <h2>Current position of the International Space Station</h2> <a href="https://github.com/john-lock/ISS-Tracker"><img src="static/images/github.png"> </a><span>View on Github</span>
     </header>
     <div class="row">
         <div class="column1">
+            <div class="container">
+                <span class="badge badge-light">Last updated: {{ timestamp }}</span></div>
             <div id="map"></div>
+            <div class="container">
+                <span class="badge badge-light">Latitude: {{ lati }} Longitude: {{ lon }}</span> </div>
         </div>
-        <div class="column2">Current astronauts on board the ISS:
-            <br> {% for astro in iss_astros %}
-            <br> {{ astro.name }} {% endfor %}
-            <br>
-            <br>
-            <br> {% if astro in other_astros %} Other astronauts in space:
-            <br> {% for astro in other_astros %} {{ astro.name }}{{ astro.craft }}
-            <br> {% endfor %} {% else %} There are no other astronauts in space at this moment {% endif %}
-            <br>
-            <br>
-            <p> Last updated: {{ timestamp }}
-                <br>Latitude: {{ lati }} Longitude: {{ lon }}</p>
+        <div class="column2">
+            <div class="row">
+                <h3>Current astronauts on board the ISS:</h3>
+                <div class="container" id="astro-names">
+                    <ul class="list-group list-group-flush">
+                        <br> {% for astro in iss_astros %}
+                        <li class="list-group-item">{{ astro.name }}</li> {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="list-group list-group-flush">
+                    {% if astro in other_astros %} Other astronauts in space: {% for astro in other_astros %}
+                    <li class="list-group-item">{{ astro.name }} on: {{ astro.craft }}</li>
+                    {% endfor %}{% endif %}
+                </ul>
+            </div>
         </div>
     </div>
     <script>
