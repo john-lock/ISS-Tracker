@@ -1,19 +1,19 @@
 from flask import Flask, render_template
 import json
+import os
 import time
 import requests
 
 
 app = Flask(__name__)
-
+apikey = os.environ['APIKEY']
 
 @app.route('/', methods=['GET'])
 def main():
     astro_data = None
     now_data = None
     errors = None
-    apikey = "AIzaSyCPkyyQ6tr1Z7U59ubaJBJicWJ7-12fTbQ"
-
+    
     # ISS NOW
     iss_now_url = "http://api.open-notify.org/iss-now.json"
     try:
