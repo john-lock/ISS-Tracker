@@ -39,7 +39,16 @@ def main():
     iss_astros = [x for x in astros if x['craft'] == "ISS"]
     other_astros = [x for x in astros if x['craft'] != "ISS"]
 
-    return render_template('index.html', lati=lati, lon=lon, now_data=now_data, apikey=apikey, errors=errors, iss_astros=iss_astros, other_astros=other_astros, timestamp=timestamp)
+    return render_template('index.html',
+    lati=lati,
+    lon=lon,
+    now_data=now_data,
+    apikey=apikey,
+    errors=errors,
+    iss_astros=iss_astros,
+    other_astros=other_astros,
+    timestamp=timestamp
+    )
 
 
 if __name__ == '__main__':
