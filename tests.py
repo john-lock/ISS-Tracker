@@ -8,8 +8,6 @@ astros_url = 'http://api.open-notify.org/astros.json'
 
 
 class TestApi(unittest.TestCase):
-    astros_url = 'http://api.open-notify.org/astros.json'
-
     def test_response_location_api(self):
         response = requests.get(iss_now_url)
         self.assertEqual(200, response.status_code)
@@ -21,12 +19,10 @@ class TestApi(unittest.TestCase):
         self.assertIn('longitude', data['iss_position'])
 
     def test_response_astro_api(self):
-        astros_url = 'http://api.open-notify.org/astros.json'
         response = requests.get(astros_url)
         self.assertEqual(200, response.status_code)
 
     def test_astros(self):
-        astros_url = 'http://api.open-notify.org/astros.json'
         response = requests.get(astros_url)
         data = json.loads(response.text)
         self.assertEqual(type(data['number']), int)
